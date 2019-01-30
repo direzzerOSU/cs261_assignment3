@@ -1,7 +1,7 @@
 /***********************************************************
 * Author: Ryan DiRezze
 * Email: direzzer@oregonstate.edu
-* Date Created: 1/28/19
+* Date Created: 2/11/19
 * Filename: linkedList.c
 *
 * Overview:
@@ -114,7 +114,7 @@ static void addLinkBefore(struct LinkedList* list, struct Link* link, TYPE value
 		temp = temp->next;
 	}
 
-	/* insert the new node */
+	/* insert the new node & update pointers of nodes within the list */
 	node->next = link;
 	temp->next = node;
 	assert(temp->next == node && node->next == link);
@@ -160,6 +160,7 @@ static void removeLink(struct LinkedList* list, struct Link* link)
 	link->next->prev = temp;
 
 	/* free the removed node */
+	assert(link != list->frontSentinel && link != list->backSentinel);
 	free(link);
 	list->size -= 1;
 }
@@ -213,21 +214,11 @@ void linkedListAddFront(struct LinkedList* deque, TYPE value)
 	/* assertion for validation (deque is not NULL) */
 	assert(deque != 0);
 
-	/* initialize a new node */
-	struct Link* node = (struct Link*)malloc(sizeof(struct Link));
-	node->value = value;
+	/* temp pointer that represents the first node/link (non-sentinel) */
+	struct Link* temp = deque->frontSentinel->next;
 
-	/* temp pointer that represents the front sentinel */
-	struct Link* temp = deque->frontSentinel;
-	
-	/* update node pointers */
-	temp->next->prev = node;
-	node->next = temp->next;
-	temp->next = node;
-	node->prev = temp;
-
-	/* update deque's size */
-	deque->size += 1;
+	/* insert the node */
+	addLinkBefore(deque, temp, value);
 }
 
 /**
@@ -244,21 +235,11 @@ void linkedListAddBack(struct LinkedList* deque, TYPE value)
 	/* assertion for validation (deque is not NULL) */
 	assert(deque != 0);
 
-	/* initialize the new node */
-	struct Link* node = (struct Link*)malloc(sizeof(struct Link));
-	node->value = value;
-
 	/* node that points to the deque's back sentinel */
 	struct Link* temp = deque->backSentinel;
 
-	/* re-point node pointers */
-	temp->prev->next = node;
-	node->prev = temp->prev;
-	temp->prev = node;
-	node->next = temp;
-
-	/* update the deque's size */
-	deque->size += 1;
+	/* insert the node */
+	addLinkBefore(deque, temp, value);
 }
 
 /**
@@ -316,13 +297,8 @@ void linkedListRemoveFront(struct LinkedList* deque)
 	/* variable that points to the first node in the list (deque) */
 	struct Link* front = deque->frontSentinel->next;
 
-	/* re-point frontSentinel & the 2nd node's pointers so that the 2nd node is now the 1st node */
-	front->next->prev = deque->frontSentinel;
-	deque->frontSentinel->next = front->next;
-
-	/* free memory of the removed node & update the deque's size */
-	free(front);
-	deque->size -= 1;
+	/* remove the front node/link */
+	removeLink(deque, front);
 }
 
 /**
@@ -342,13 +318,8 @@ void linkedListRemoveBack(struct LinkedList* deque)
 	/* point to the last (non-sentinel) node in the deque */
 	struct Link* last = deque->backSentinel->prev;
 
-	/* re-point next (backSentinel) & prev node pointers to remove the last node from the deque */
-	last->prev->next = deque->backSentinel;
-	deque->backSentinel->prev = last->prev;
-
-	/* free the removed node's memory & update deque's size */
-	free(last);
-	deque->size -= 1;
+	/* remove the last node/link */
+	removeLink(deque, last);
 }
 
 /**
@@ -426,7 +397,11 @@ void linkedListPrint(struct LinkedList* deque)
  /* FIXME: You will write this function */
 void linkedListAdd(struct LinkedList* bag, TYPE value)
 {
+	/* assertion to validate the bag is not NULL */
+	assert(bag != 0);
 
+	/* insert the new node (link) at the beginning of the bag's linked list */
+	addLinkBefore(bag, bag->frontSentinel->next, value);
 }
 
 /**
@@ -437,10 +412,30 @@ void linkedListAdd(struct LinkedList* bag, TYPE value)
 	post:	none
 	ret:	1 if link with given value found; otherwise, 0
  */
+ /* FIXME: You will write this function */
 int linkedListContains(struct LinkedList* bag, TYPE value)
 {
+	/* assertion to validate the bag is not NULL */
+	assert(bag != 0);
 
-	/* FIXME: You will write this function */
+	/* point to the a node within the bag/linkedlist */
+	struct Link* node = bag->frontSentinel->next;
+
+	/* iterate through the linked list's nodes (links) to search for a specific value */
+	while (node->next != 0 && node->next != bag->backSentinel)
+	{
+		/* node/link value equals the searched-for value */
+		if (node->value == value)
+		{
+			return 1;
+		}
+
+		/* update the node's value to the next node */
+		node = node->next;
+	}
+	
+	/* value is not in the linked list */
+	return 0;
 }
 
 /**
@@ -451,7 +446,35 @@ int linkedListContains(struct LinkedList* bag, TYPE value)
 	post:	if link with given value found, link is removed
 			(call to removeLink)
  */
+ /* FIXME: You will write this function */
 void linkedListRemove(struct LinkedList* bag, TYPE value)
 {
-	/* FIXME: You will write this function */
+	/* assert to validate the bag is not NULL */
+	assert(bag != 0);
+
+	/* bag contains the specific value */
+	if (linkedListContains(bag, value))
+	{
+		/* point to the frontSentinel */
+		struct Link* node = bag->frontSentinel->next;
+
+		/* flag to end the below loop (and this function) is triggered */
+		int nodeFound = 0;		// initial value of 0 == false
+
+		/* find the node/link with the searched-for value (terminates this loop and function when the value is found) */
+		while (nodeFound == 0 && (node->next != 0 && node->next != bag->backSentinel))
+		{
+			/* node/link contains the searched-for value */
+			if (node->value == value)
+			{
+				/* remove the node/link */
+				removeLink(bag, node);
+
+				/* trigger the nodeFound flag to terminate this loop & function */
+				nodeFound = 1;
+			}
+			
+			node = node->next;
+		}
+	}
 }
