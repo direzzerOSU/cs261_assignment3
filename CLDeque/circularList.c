@@ -43,6 +43,7 @@ struct CircularList
 	struct Link* sentinel;
 };
 
+/* FIXME: You will write this function */
 /**
   	Allocates the deque's sentinel and sets the size to 0.
   	The sentinel's next and prev should point to the sentinel itself.
@@ -55,7 +56,19 @@ struct CircularList
  */
 static void init(struct CircularList* deque)
 {
-	/* FIXME: You will write this function */
+	/* allocate memory for the CircularLinkedList */
+	struct CircularList* deque = (struct CircularList*)malloc(sizeof(struct CircularList));
+
+	/* allocate memory for the CircularList's sentinel */
+	struct Link* sentinel = (struct Link*)malloc(sizeof(struct Link));
+
+	/* point the CircularList's sentinel pointer to the above link/node for a sentinel */
+	deque->sentinel = sentinel;
+
+	/* update sentinel's value & pointers (sentinel's pointers: sentinel <- sentinel -> sentinel ) */
+	sentinel->value = 0;
+	sentinel->next = sentinel;
+	sentinel->prev = sentinel;
 }
 
 /**

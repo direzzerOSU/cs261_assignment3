@@ -115,10 +115,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\CLDeque\circularList.c" />
+    <ClCompile Include="..\..\CLDeque\circularListMain.c" />
     <ClCompile Include="..\..\LLDeque\linkedList.c" />
     <ClCompile Include="..\..\LLDeque\linkedListMain.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\CLDeque\circularList.h" />
     <ClInclude Include="..\..\LLDeque\linkedList.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

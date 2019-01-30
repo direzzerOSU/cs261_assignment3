@@ -1,5 +1,6 @@
 #include "linkedList.h"
 #include <stdio.h>
+#include <assert.h>
 
 int main(){
 	struct LinkedList* l = linkedListCreate(); 
@@ -26,6 +27,10 @@ int main(){
        linkedListRemove(k, (TYPE)11);
         linkedListPrint(k);
         linkedListDestroy(k);
+
+/* validate both lists are empty */
+		//assert(linkedListIsEmpty(l));
+		//assert(linkedListIsEmpty(k));
 	return 0;
 }
 

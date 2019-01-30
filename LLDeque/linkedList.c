@@ -49,6 +49,7 @@ struct LinkedList
 	int size;
 };
 
+/* FIXME: You will write this function */
 /**
   	Allocates the list's sentinel and sets the size to 0.
   	The sentinels' next and prev should point to eachother or NULL
@@ -62,7 +63,6 @@ struct LinkedList
 			back sentinel next points to null
 			list size is 0
  */
- /* FIXME: You will write this function */
 static void init(struct LinkedList* list) 
 {
 	/* validate list != NULL */
@@ -85,6 +85,7 @@ static void init(struct LinkedList* list)
 	list->size = 0;
 }
 
+/* FIXME: You will write this function */
 /**
  	Adds a new link with the given value before the given link and
 	increments the list's size.
@@ -96,7 +97,6 @@ static void init(struct LinkedList* list)
 			newLink w/ given value is added before param link
 			list size is incremented by 1
  */
- /* FIXME: You will write this function */
 static void addLinkBefore(struct LinkedList* list, struct Link* link, TYPE value)
 {
 	/* assertions for validation */
@@ -127,6 +127,7 @@ static void addLinkBefore(struct LinkedList* list, struct Link* link, TYPE value
 	list->size += 1;
 }
 
+/* FIXME: You will write this function */
 /**
 	Removes the given link from the list and
 	decrements the list's size.
@@ -137,7 +138,6 @@ static void addLinkBefore(struct LinkedList* list, struct Link* link, TYPE value
 			memory allocated to link is freed
 			list size is decremented by 1
  */
- /* FIXME: You will write this function */
 static void removeLink(struct LinkedList* list, struct Link* link)
 {
 	/* assertions for validation (list & link are not NULL */
@@ -200,6 +200,7 @@ void linkedListDestroy(struct LinkedList* list)
 	list = NULL;
 }
 
+/* FIXME: You will write this function */
 /**
 	Adds a new link with the given value to the front of the deque.
 	param: 	deque 	struct LinkedList ptr
@@ -208,7 +209,6 @@ void linkedListDestroy(struct LinkedList* list)
 	post: 	link is created w/ param value stored before current first link
 			(call to addLinkBefore)
  */
- /* FIXME: You will write this function */
 void linkedListAddFront(struct LinkedList* deque, TYPE value)
 {
 	/* assertion for validation (deque is not NULL) */
@@ -221,6 +221,7 @@ void linkedListAddFront(struct LinkedList* deque, TYPE value)
 	addLinkBefore(deque, temp, value);
 }
 
+/* FIXME: You will write this function */
 /**
 	Adds a new link with the given value to the back of the deque.
 	param: 	deque 	struct LinkedList ptr
@@ -229,7 +230,6 @@ void linkedListAddFront(struct LinkedList* deque, TYPE value)
 	post: 	link is created with given value before current last link
 			(call to addLinkBefore)
  */
- /* FIXME: You will write this function */
 void linkedListAddBack(struct LinkedList* deque, TYPE value)
 {
 	/* assertion for validation (deque is not NULL) */
@@ -242,6 +242,7 @@ void linkedListAddBack(struct LinkedList* deque, TYPE value)
 	addLinkBefore(deque, temp, value);
 }
 
+/* FIXME: You will write this function */
 /**
 	Returns the value of the link at the front of the deque.
 	param: 	deque 	struct LinkedList ptr
@@ -250,7 +251,6 @@ void linkedListAddBack(struct LinkedList* deque, TYPE value)
 	post:	none
 	ret:	first link's value 
  */
- /* FIXME: You will write this function */
 TYPE linkedListFront(struct LinkedList* deque)
 {
 	/* assertions for validation (deque is not NULL & deck is not empty) */
@@ -261,6 +261,7 @@ TYPE linkedListFront(struct LinkedList* deque)
 	return deque->frontSentinel->next->value;
 }
 
+/* FIXME: You will write this function */
 /**
 	Returns the value of the link at the back of the deque.
 	param: 	deque 	struct LinkedList ptr
@@ -269,7 +270,6 @@ TYPE linkedListFront(struct LinkedList* deque)
 	post:	none
 	ret:	last link's value 
  */
- /* FIXME: You will write this function */
 TYPE linkedListBack(struct LinkedList* deque)
 {
 	/* assertions for validation (deque is not NULL & deque is not empty) */
@@ -280,6 +280,7 @@ TYPE linkedListBack(struct LinkedList* deque)
 	return deque->backSentinel->prev->value;
 }
 
+/* FIXME: You will write this function */
 /**
 	Removes the link at the front of the deque.
 	param: 	deque 	struct LinkedList ptr
@@ -287,7 +288,6 @@ TYPE linkedListBack(struct LinkedList* deque)
 	pre:	deque is not empty
 	post:	first link is removed and freed (call to removeLink)
  */
- /* FIXME: You will write this function */
 void linkedListRemoveFront(struct LinkedList* deque)
 {
 	/* assertions for validation (deque is not NULL & deque is not empty) */
@@ -301,6 +301,7 @@ void linkedListRemoveFront(struct LinkedList* deque)
 	removeLink(deque, front);
 }
 
+/* FIXME: You will write this function */
 /**
 	Removes the link at the back of the deque.
 	param: 	deque 	struct LinkedList ptr
@@ -308,7 +309,6 @@ void linkedListRemoveFront(struct LinkedList* deque)
 	pre:	deque is not empty
 	post:	last link is removed and freed (call to removeLink)
  */
- /* FIXME: You will write this function */
 void linkedListRemoveBack(struct LinkedList* deque)
 {
 	/* assertions for validation (deque is not NULL & deque is not empty) */
@@ -322,6 +322,7 @@ void linkedListRemoveBack(struct LinkedList* deque)
 	removeLink(deque, last);
 }
 
+/* FIXME: You will write this function */
 /**
 	Returns 1 if the deque is empty and 0 otherwise.
 	param:	deque	struct LinkedList ptr
@@ -329,7 +330,6 @@ void linkedListRemoveBack(struct LinkedList* deque)
 	post:	none
 	ret:	1 if its size is 0 (empty), otherwise 0 (not empty)
  */
- /* FIXME: You will write this function */
 int linkedListIsEmpty(struct LinkedList* deque)
 {
 	/* validate the deque is not NULL */
@@ -348,6 +348,7 @@ int linkedListIsEmpty(struct LinkedList* deque)
 	}
 }
 
+/* FIXME: You will write this function */
 /**
 	Prints the values of the links in the deque from front to back.
 	param:	deque	struct LinkedList ptr
@@ -356,14 +357,13 @@ int linkedListIsEmpty(struct LinkedList* deque)
 	ret:	outputs to the console the values of the links from front 
 			to back; if empty, prints msg that is empty
  */
- /* FIXME: You will write this function */
 void linkedListPrint(struct LinkedList* deque)
 {
 	/* assertion to validate the deque is not NULL */
 	assert(deque != 0);
 
 	/* list is NOT empty */
-	if (linkedListIsEmpty(deque))
+	if (!linkedListIsEmpty(deque))
 	{
 		/* point to the frontSentinel & iterate through the list while printing node values */
 		struct Link* link = deque->frontSentinel->next;
@@ -384,6 +384,7 @@ void linkedListPrint(struct LinkedList* deque)
 	}
 }
 
+/* FIXME: You will write this function */
 /**
 	Adds a link with the given value to the bag.
 	param:	bag		struct LinkedList ptr
@@ -394,7 +395,6 @@ void linkedListPrint(struct LinkedList* deque)
 			Note that bag doesn't specify where new link should be added;
 			can be anywhere in bag according to its ADT.
  */
- /* FIXME: You will write this function */
 void linkedListAdd(struct LinkedList* bag, TYPE value)
 {
 	/* assertion to validate the bag is not NULL */
@@ -404,6 +404,7 @@ void linkedListAdd(struct LinkedList* bag, TYPE value)
 	addLinkBefore(bag, bag->frontSentinel->next, value);
 }
 
+/* FIXME: You will write this function */
 /**
 	Returns 1 if a link with the value is in the bag and 0 otherwise.
 	param:	bag		struct LinkedList ptr
@@ -412,7 +413,6 @@ void linkedListAdd(struct LinkedList* bag, TYPE value)
 	post:	none
 	ret:	1 if link with given value found; otherwise, 0
  */
- /* FIXME: You will write this function */
 int linkedListContains(struct LinkedList* bag, TYPE value)
 {
 	/* assertion to validate the bag is not NULL */
@@ -438,6 +438,7 @@ int linkedListContains(struct LinkedList* bag, TYPE value)
 	return 0;
 }
 
+/* FIXME: You will write this function */
 /**
 	Removes the first occurrence of a link with the given value.
 	param:	bag		struct LinkedList ptr
@@ -446,7 +447,6 @@ int linkedListContains(struct LinkedList* bag, TYPE value)
 	post:	if link with given value found, link is removed
 			(call to removeLink)
  */
- /* FIXME: You will write this function */
 void linkedListRemove(struct LinkedList* bag, TYPE value)
 {
 	/* assert to validate the bag is not NULL */
