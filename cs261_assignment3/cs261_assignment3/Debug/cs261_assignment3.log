@@ -1,0 +1,2 @@
+﻿linkedListMain.obj : error LNK2005: _main already defined in circularListMain.obj
+C:\Users\direz\OneDrive\Documents\OregonStateUniversity\CS261\Week3\cs261_assignment3\cs261_assignment3\Debug\cs261_assignment3.exe : fatal error LNK1169: one or more multiply defined symbols found

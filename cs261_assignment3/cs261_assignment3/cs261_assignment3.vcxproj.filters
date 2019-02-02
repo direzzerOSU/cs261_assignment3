@@ -36,4 +36,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\CLDeque\makefilecirListDeque">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
 </Project>

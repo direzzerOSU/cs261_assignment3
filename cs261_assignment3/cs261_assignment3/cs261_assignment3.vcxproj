@@ -124,6 +124,9 @@
     <ClInclude Include="..\..\CLDeque\circularList.h" />
     <ClInclude Include="..\..\LLDeque\linkedList.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\CLDeque\makefilecirListDeque" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
