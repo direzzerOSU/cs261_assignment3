@@ -119,6 +119,7 @@
     <ClCompile Include="..\..\CLDeque\circularListMain.c" />
     <ClCompile Include="..\..\LLDeque\linkedList.c" />
     <ClCompile Include="..\..\LLDeque\linkedListMain.c" />
+    <ClCompile Include="..\..\Stack_from_Queues\stack_from_queue.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\CLDeque\circularList.h" />
@@ -126,6 +127,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\CLDeque\makefilecirListDeque" />
+    <None Include="..\..\LLDeque\makefileLLDequeBag" />
+    <None Include="..\..\Stack_from_Queues\makefile" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

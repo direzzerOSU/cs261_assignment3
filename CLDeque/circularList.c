@@ -351,7 +351,7 @@ void circularListPrint(struct CircularList* deque)
 	/* list is empty */
 	if (circularListIsEmpty(deque))
 	{
-		printf("\nCircularLinkedList is empty...\n");
+		printf("CircularLinkedList is empty...\n");
 	}
 
 	/* list is NOT empty */
@@ -360,17 +360,20 @@ void circularListPrint(struct CircularList* deque)
 		/* iterate through each of the list's nodes/links & print each value */
 		struct Link* node = deque->sentinel->next;
 
-		printf("\nPrinting the CircularLinkedList's values...\n");
+		printf("Printing the CircularLinkedList's values...\n");
 		printf("CircularLinkedList: ");
 
 		while (node != deque->sentinel)
 		{
 			/* print the node/link's value */
-			printf("%.2f ", node->value);
+			printf("%.0f ", node->value);
 
 			/* update the node/link that the pointer points to */
 			node = node->next;
 		}
+
+		/* end the current line of text (from the list of values) */
+		printf("\n");
 	}
 }
 
